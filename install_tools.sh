@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 yum -y groupinstall "Development Tools"
 yum -y install unzip
 tar xvfz /tmp/TAR/inxi.tar.gz -C /opt
