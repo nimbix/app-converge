@@ -40,9 +40,15 @@ ENV JARVICE_DESKTOP_ITER 1
 #        | bash
 
 COPY ./install-nimbix.sh /tmp/install-nimbix.sh
+
+ADD ./install_tools.sh /tmp/install_tools.sh
+ADD ./TAR /tmp/TAR
+
 RUN yum install -y ca-certificates && \
     bash /tmp/install-nimbix.sh && \
-    rm -f /tmp/install-nimbix.sh
+    rm -f /tmp/install-nimbix.sh && \
+	bash /tmp/install_tools.sh
+	
 
 ##############################
 ### Web shell : workaround ###
