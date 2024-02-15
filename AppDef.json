@@ -2,7 +2,7 @@
     "name": "Converge el7 v3.0.26-rev1 openmpi",
     "description": "Converge openmpi",
     "author": "IFPEN",
-    "licensed": true,
+    "licensed": false,
     "appdefversion": 2,
     "classifications": [
         "Physical"
@@ -17,6 +17,20 @@
         "OBJECT"
     ],
     "commands": {
+        "batch-submission": {
+            "path": "/usr/local/scripts/batch.sh",
+            "name": "Batch Submission",
+            "description": "Run a batch job given an input file",
+            "parameters": {
+                "-i": {
+                    "name": "-i",
+                    "description": "Input File",
+                    "type": "FILE",
+                    "filter": "*.in",
+                    "required": true
+                }
+            }
+        },
         "batch": {
             "path": "/bin/bash",
             "interactive": false,
@@ -86,7 +100,7 @@
             }
         },
         "desktop-terminal": {
-            "path": "xfce4-terminal --working-directory=/data",
+            "path": "/usr/local/scripts/start-viz.sh",
             "desktop": true,
             "name": "Desktop Terminal",
             "description": "Run a GUI terminal, and connect interactively directly from your web browser (requires JARVICE Desktop in container image from https://github.com/nimbix/jarvice-desktop)."
