@@ -33,6 +33,8 @@ set -e
 [[ -r /etc/JARVICE/jobenv.sh ]] && source /etc/JARVICE/jobenv.sh
 [[ -r /etc/JARVICE/jobinfo.sh ]] && source /etc/JARVICE/jobinfo.sh
 
+. "$(dirname $0)/setenv.sh"
+
 # Get the input file
 INPUT_FILE=""
 while [ -n "$1" ]; do
@@ -79,7 +81,8 @@ if [ "$JARVICE_MPI_PROVIDER" = "verbs" ]; then
   fi
 fi
 
-cmd="$(which mpirun) $MPIOPTS /opt/converge/bin/converge super"
+# Add license server environment variable to call
+cmd="$(which mpirun) $MPIOPTS -x RLM_LICENSE /opt/converge/bin/converge super"
 echo "Running: $cmd"
 eval $cmd
 EXIT_CODE=$?

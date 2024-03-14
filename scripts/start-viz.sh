@@ -31,7 +31,14 @@
 [[ -r /etc/JARVICE/jobenv.sh ]] && source /etc/JARVICE/jobenv.sh
 [[ -r /etc/JARVICE/jobinfo.sh ]] && source /etc/JARVICE/jobinfo.sh
 
+. "$(dirname $0)/setenv.sh"
+
+# Update the PS1 variable if it does not exist
 if [[ -z $PS1 ]]; then
   echo export "PS1=\"[\u@\h:\w]\\$ \"" >> $HOME/.bashrc
 fi
+
+# Add license server variable to .bashrc file
+echo export "RLM_LICENSE=\"${RLM_LICENSE}\"" >> $HOME/.bashrc
+
 exec  xfce4-terminal --working-directory=/data

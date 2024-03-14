@@ -27,7 +27,7 @@
 # policies, either expressed or implied, of Nimbix, Inc.
 
 # Serial Number
-ARG SERIAL_NUMBER=20240213.1000
+ARG SERIAL_NUMBER=20240314.1000
 
 # Load updated JARVICE MPI with UCX
 FROM us-docker.pkg.dev/jarvice/images/mpi-test:custom-mpi-ucx as JARVICE_MPI
@@ -74,9 +74,6 @@ COPY scripts /usr/local/scripts
 
 ENV PATH=/opt/JARVICE_UCX/openmpi/bin:/opt/JARVICE_UCX/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV LD_LIBRARY_PATH=/opt/JARVICE_UCX/openmpi/lib:/opt/JARVICE_UCX/lib
-
-ARG RLM_LICENSE
-ENV RLM_LICENSE=${RLM_LICENSE}
 
 COPY ./AppDef.json /etc/NAE/AppDef.json
 RUN curl --fail -X POST -d @/etc/NAE/AppDef.json https://cloud.nimbix.net/api/jarvice/validate
